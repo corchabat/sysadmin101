@@ -66,7 +66,6 @@ Para conocer los dispositivos de red que están conectados a nuestro sistema, lo
 `$ ip link show`
 
 
-
 Y para mostrar qué dispositivos están o no conectados:
 
 `$ nmcli connection show`
@@ -86,25 +85,67 @@ Verificamos de nuevo con:
 
 `$ sudo nmcli connection show`
 
-### 2.2. Hacer upgrade/update.
+`$ ping node3`
+
+`$ ip route show`
+
+`$ netstat -tulpn`
+
+### 2.2. Habilitar firewall para un puerto o servicio.
+
+Un firewall sirve para proteger nuestros sistemas del tráfico de red no deseado a través de reglas. En RHEL 8, el firewall se maneja como un servicio llamado firewalld y las reglas se definen con la utilidad de línea de comando firewall-cmd.
+
+`$ sudo firewall-cmd --permanent --add-port=80/tcp`
+`$ sudo firewall-cmd --permanent --add-service=http`
+`$ sudo firewall-cmd --reload`
+
+
+### 2.3. Hacer upgrade/update.
 Para obtener las últimas versiones de los paquetes que tenemos instalados.
 
 `$ sudo yum -y update && yum -y upgrade`
 
+Para instalar un paquete, también se utiliza el comando yum:
 
+`$ yum -y install bash-completion`
 
-### 2.4. Configurar SSH.
+### 2.4. Comandos básicos de navegación entre filesystems.
 
-Verificamos si SSH está instalado y en qué versión se encuentra
-         
+Al navegar entre directorios vía línea de comando, nos encontramos con algunos comandos que simplifican esta navegación o nos permiten generar, eliminar, copiar o mover los archivos:
 
+Por ejemplo, el comando *pwd* nos muestra el "present working directory", o bien, la ruta completa del directorio donde nos encontramos actualmente:
+`
+$ pwd`
 
+De tal manera que si necesitamos cambiar de directorio, podemos utilizar el comando *cd* o "change directory":
 
+`$ cd /home/sysadmin`
 
+Ahora bien, si el directorio que necesitamos no existe, podemos crearlo com *mkdir":
 
+`$ mkdir /home/sysadmin/dir1`
 
+O si vamos a crear directorios anidados, añadimos la opción *-p*
 
+`$ mkdir -p /home/sysadmin/dir1/dir2/dir3`
 
+Para observar qué archivos y directorios están contenidos dentro de cierta ruta, tenemos el comando *ls*, por ejemplo, si ejecutamos *ls -las*:
+
+`$ ls -las /home/sysadmin`
+
+Podremos ver información acerca de quienes son los propietarios, timestamps y tamaños de todo lo que se encuentra dentro de /home/sysadmin.
+
+### 2.5. Iniciar, detener y habilitar servicios.
+
+En RHEL 8,los servicios se gestionan a través de la herramienta de línea de comando *systemctl*:
+Estado actual de un servicio
+`$ systemctl status firewalld`
+Iniciar un servicio
+`$ sudo systemctl start firewalld`
+Habilitar un servicio
+`$ sudo systemctl enable firewalld`
+Detener un servicio
+`$ sudo systemctl stop firewalld`
 
 
 ## 3. Usuarios, Grupos y Permisos.

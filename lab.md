@@ -245,12 +245,15 @@ Corroboramos el cambio con:
 
 Vamos a probar con otra sintaxis para modificar los permisos del archivo file2:
  
-`$ chmod u+rwx file2.txt`
-`$ chmod g+rw file2.txt`
-`$ chmod o+r file2.txt`
+`$ sudo chmod u+rwx file2.txt`
+`$ sudo chmod g+rw file2.txt`
+`$ sudo chmod o+r file2.txt`
 
  
  Verificamos que los archivos tienen los mismos permisos.
+ 
+ `$ ls -ls`
+
  
 Ahora veamos cómo se modifica la pertenencia con el comando *chown*, asignando la de file1 al usuario sysadmin2 y al grupo admin y la de file2 al usuario sysadmin3 y al grupo sysadmin3:
  

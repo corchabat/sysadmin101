@@ -65,12 +65,19 @@ Para conocer los dispositivos de red que están conectados a nuestro sistema, lo
 
 `$ ip link show`
 
+Observamos que la única interfaz que lista es *ens3* y que se encuentra en estado DOWN, lo cual quiere decir que la interfaz se encuentra deshabilitada. Vamos a habilitarla:
 
-Y para mostrar qué dispositivos están o no conectados:
+`$ sudo ip link set ens3 up`
+
+Para mostrar un resumen de qué dispositivos de red tenemos en nuestra máquina, si están habilitados y si tienen asignada una conexión, utilizamos el comando *nmcli*:
+
+`$ nmcli device s`
+
+Y para mostrar qué conexiones activas tenemos:
 
 `$ nmcli connection show`
 
-Y ya que contamos con esta información, pasaremos a configurar la conexión con dirección IP estática:
+Ya que contamos con esta información, pasaremos a configurar la conexión con dirección IP estática:
 
 `$ nmcli connection add type ethernet ifname <nombre-del-dispositivo> con-name <nombre-de-la-conexión> ipv4.addresses <192.168.XX.XX>/24 ipv4.gateway <192.168.XX.XX> ipv4.dns <192.168.XX.XX> ipv4.method manual`
 

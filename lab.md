@@ -176,35 +176,37 @@ De manera análoga, tenemos el archivo */etc/group* con el detalle de los grupos
 `$ cat /etc/group`
 
 
-Para agregar nuevos usuarios y grupos existen los comandos *useradd* y *groupadd*. Para probar esto, vamos a generar dos usuarios adicionales: sysadmin2 y sysadmin3.
+Para agregar nuevos usuarios y grupos existen los comandos *useradd* y *groupadd*. Para probar esto, vamos a generar dos usuarios adicionales: sysadmin1 y sysadmin2.
+
+`$ sudo useradd sysadmin1`
 
 `$ sudo useradd sysadmin2`
-
-`$ sudo useradd sysadmin3`
 
 
 Para poder iniciar sesión como estos usuarios, hay que asignarles una contraseña con el comando *passwd*:
 
-`$ sudo passwd sysadmin2`
+`$ sudo passwd sysadmin1`
 
-`$ sudo passwd sysadmin3`
+`$ sudo passwd sysadmin2`
 
 
 Una manera de asegurar que las contraseñas sean privadas y seguras es a través del comando *chage* que nos permite modificar nuestras políticas de contraseñas.
 
 Para mostrar la política de contraseña actual para un usuario:
 
-`$ sudo chage -l sysadmin2`
+`$ sudo chage -l sysadmin1`
 
 Para asegurarnos de que el usuario cambie su contraseña cada 60 días como máximo: 
 
-`$ sudo chage -M 60 sysadmin2`
+`$ sudo chage -M 60 sysadmin1`
 
 O bien, para asegurarnos de que el usuario tenga que cambiar su contraseña tras iniciar sesión por primera vez:
 
-`$ sudo chage -d 0 sysadmin2`
+`$ sudo chage -d 0 sysadmin1`
 
-Probemos iniciar sesión como sysadmin2 para confirmar este último cambio.
+Probemos iniciar sesión como sysadmin1 para confirmar este último cambio.
+
+`$ su - sysadmin1`
 
 Para crear grupos, utilizamos el comando *groupadd* de forma muy similar a *useradd*:
 
@@ -213,9 +215,9 @@ Para crear grupos, utilizamos el comando *groupadd* de forma muy similar a *user
 
 Para agregar usuarios a este grupo, utilizaremos el comando *usermod* que nos permite modificar cuentas de usuario:
 
-`$ sudo usermod sysadmin2 -G admin`
+`$ sudo usermod sysadmin1 -G admin`
 
-`$ sudo usermod sysadmin3 -G admin`
+`$ sudo usermod sysadmin2 -G admin`
 
 
 
@@ -300,9 +302,9 @@ Antes de poder disponer de este espacio, es necesario otorgarle un filesystem, e
 
 Por último, para darle uso a este filesystem de 6GB, vamos a montar el LV. Para esto, vamos a crear un directorio utilizando *mkdir* y a montar en él nuesto fs utilizando el comando *mount*.
 
-`$ mkdir /home/sysadmin/mnt-workshop`
+`$ mkdir /home/student/mnt-workshop`
 
-`$ sudo mount /dev/vg-worksop/lv-workshop /home/sysadmin/mnt-workshop`
+`$ sudo mount /dev/vg-worksop/lv-workshop /home/student/mnt-workshop`
 
 El comando *df -h* nos muestra todos los puntos de montaje que tenemos en nuestra máquina. Corroboremos que el montaje y tamaño de nuestro filesystem son correctos:
 

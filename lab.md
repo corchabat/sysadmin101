@@ -60,7 +60,8 @@ Tome este archivo y haga pruebas con él: pruebe eliminar una línea entera, des
       
 ### 2.1. Configuración de Red.
 
-TODOS los ejercicios se harán desde la máquina workstation, conectándonos vía ssh al nodo2:
+Nota importante:
+TODOS los ejercicios se harán en el nodo2. Antes de la configuración de IP estática, entramos directamente a esta VM desde la consola. Después de configurar IP estática, podemos conectarnos vía ssh en la máquina workstation:
 
 `$ ssh student@node2.example.com`
 

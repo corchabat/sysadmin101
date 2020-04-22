@@ -103,6 +103,9 @@ Verificamos de nuevo con:
 `$ ip route show`
 
 `$ netstat -tulpn`
+Nota: el comando netstat es parte del paquete net-tools:
+`$ sudo yum -y install net-tools`
+
 
 ### 2.2. Habilitar firewall para un puerto o servicio.
 

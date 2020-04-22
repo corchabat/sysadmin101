@@ -126,21 +126,21 @@ $ pwd`
 
 De tal manera que si necesitamos cambiar de directorio, podemos utilizar el comando *cd* o "change directory":
 
-`$ cd /home/sysadmin`
+`$ cd /home/student`
 
 Ahora bien, si el directorio que necesitamos no existe, podemos crearlo com *mkdir":
 
-`$ mkdir /home/sysadmin/dir1`
+`$ mkdir /home/student/dir1`
 
 O si vamos a crear directorios anidados, añadimos la opción *-p*
 
-`$ mkdir -p /home/sysadmin/dir1/dir2/dir3`
+`$ mkdir -p /home/student/dir1/dir2/dir3`
 
 Para observar qué archivos y directorios están contenidos dentro de cierta ruta, tenemos el comando *ls*, por ejemplo, si ejecutamos *ls -las*:
 
-`$ ls -las /home/sysadmin`
+`$ ls -las /home/student`
 
-Podremos ver información acerca de quienes son los propietarios, timestamps y tamaños de todo lo que se encuentra dentro de /home/sysadmin.
+Podremos ver información acerca de quienes son los propietarios, timestamps y tamaños de todo lo que se encuentra dentro de /home/student.
 
 ### 2.5. Iniciar, detener y habilitar servicios.
 

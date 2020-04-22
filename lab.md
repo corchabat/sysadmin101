@@ -59,6 +59,12 @@ Para guardar cambios y salir, presionamos la tecla *esc*, que nos manda de vuelt
 Tome este archivo y haga pruebas con él: pruebe eliminar una línea entera, deshacer cambios o copiar y pegar.
       
 ### 2.1. Configuración de Red.
+
+TODOS los ejercicios se harán desde la máquina workstation, conectándonos vía ssh al nodo2:
+
+`$ ssh student@node2.example.com`
+
+
 La primera configuración que llevaremos a cabo será asignar una dirección ip estática a nuestro sistema. Esto es especialmente necesario en el caso de los servidores que requieren ser accesados constantemente. La forma más directa de configurar la ip estática es a través del comando **nmcli** pero antes de eso, deberemos hacer algunas verificaciones:
 
 Para conocer los dispositivos de red que están conectados a nuestro sistema, los listaremos con:

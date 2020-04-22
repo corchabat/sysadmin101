@@ -20,7 +20,7 @@ journalctl es una herramienta muy importante y muy útil para trabajar con logs,
 
 Obtendremos como salida una lista interminable de logs. Por otro lado, si nosotros ingresamos:
 
-`$ sudo journalctl -u httpd.service`
+`$ sudo journalctl -u sshd.service`
 
 Únicamente obtendremos los logs relacionados con el servicio httpd.
 

@@ -212,16 +212,39 @@ Para agregar usuarios a este grupo, utilizaremos el comando *usermod* que nos pe
 
 
 
-### 3.2. Permisos de archivos y carpetas
+### 3.2. Permisos y pertenencia de archivos y carpetas
 
+Podemos listar los permisos y pertenencia actuales de archivos y carpetas con el comando *ls -l*
 
+`$ ls -l`
 
+Para cambiar esto, utilizamos el comando *chmod* en el caso de permisos y *chown* para la pertenencia. Generemos archivos vacíos dentro de un directorio compartido para probar esto:
 
+`$ mkdir /tmp/share`
 
+`$ cd /tmp/share`
 
+`$ touch file1.txt file2.txt file3.txt`
 
+Vamos a modificar los permisos para file1 con el comando *chmod*, para que pueda ser leído, editado y ejecutado por el usuario a quien pertenece; leído y editado por el grupo al que pertenece y únicamente leído por cualquier otro usuario:
 
+`$ sudo chmod 764 file1.txt`
 
+Corroboramos el cambio con:
+
+`$ ls -l`
+
+Vamos a probar con otra sintaxis para modificar los permisos del archivo file2:
+ 
+`$ chmod u+rwx g+rw o+r file2.txt`
+ 
+ Verificamos que los archivos tienen los mismos permisos.
+ 
+Ahora veamos cómo se modifica la pertenencia con el comando *chown*, asignando la de file1 al usuario sysadmin2 y al grupo admin y la de file2 al usuario sysadmin3 y al grupo sysadmin3:
+ 
+`$ sudo chown sysadmin2:admin file1.txt`
+
+`$ sudo chown sysadmin3:syadmin3 file2.txt`
 
 
 ## 4. Gestión del almacenamiento.

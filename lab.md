@@ -150,9 +150,85 @@ Detener un servicio
 
 ## 3. Usuarios, Grupos y Permisos.
 
+En esta sección, trabajaremos con los básicos de manejo de usuarios y grupos locales, así como de permisos de archivos y carpetas.
+
 
 
 ## 4. Gestión del almacenamiento.
+En esta sección, entenderemos qué es el Logical Volumen Manager (LVM), cómo podemos utilizarlo para gestionar el almacenamiento de dispositivos de bloques y cómo podemos disponer de este espacio.
+
+En primer lugar, necesitamos conocer qué dispositivos de bloque están conectados a nuestra máquina. Para esto, podemos ayudarnos del comando *lsblk*:
+
+`$ lsblk`
+
+Podemos observar que se especifican las rutas de los dispositivos, su tamaño y si están montados y dónde. En este caso, notamos los discos */dev/vdb* y */dev/vdc*, ambos de 5GB y que no han sido montados. Estos son los discos con los que trabajaremos.
+
+Para gestionar el espacio de estos dispositivos utilizando LVM, es necesario declararlos como Physical Volumes (PV's). LVM segmenta estos PV's en unidades llamadas extents, que son los bloques más pequeños que constituyen este Physical Volume (volúmen físico). Esto lo haremos con el comando *pvcreate*:
+
+`$ sudo pvcreate /dev/vdb /dev/vdc`
+
+Listamos los Physical Volumes existentes con el comando *pvs* y mostramos más detalles con el comando *pvdisplay*:
+
+`$ sudo pvs`
+
+`$ sudo pvdisplay /dev/vdb`
+
+Ahora, vamos a generar un Volume Group (VG) a partir de estos PV's, siendo el VG un pool de almacenamiento compuesto por uno o más volúmentes físicos y del cual podemos generar múltiples Volúmenes Lógicos para consumir dicho espacio. Esto lo haremos con el comando *vgcreate*
+
+`$ sudo vgcreate vg-workshop /dev/vdb /dev/vdc`
+
+Del mismo modo, listamos los Volume Groups existentes  con el comando *vgs* y mostramos más detalles con el comando *vgdisplay*:
+
+`$ sudo vgs`
+
+`$ sudo vgdisplay vg-workshop`
+
+Una vez creado el VG, generaremos a partir de éste los Logical Volumes (LV's) que utilizaremos para poder disponer del espacio. Notemos que el espacio disponible en nuestro VG es de 10 GB. Vamos a crear un LV de 6GB de tamaño utilizando el comando *lvcreate*:
+
+`$ sudo lvcreate -L 6G -n lv-workshop vg-workshop`
+
+Igualmente, listamos los Logical Volumes existentes  con el comando *lvs* y mostramos más detalles con el comando *lvdisplay*:
+
+`$ sudo lvs`
+
+`$ sudo lvdisplay lv-workshop`
+
+Antes de poder disponer de este espacio, es necesario otorgarle un filesystem, es decir una estructura de cómo se almacenan datos y cómo se dispone de ellos. El filesystem que utilizaremos es ext4, ya que es el estándar para Linux debido a su estabilidad y rapidez. Asignamos filesystem a un LV utilizando el comando *mkfs*:
+
+`$ sudo mkfs.ext4 /dev/vg-workshop/lv-workshop`
+
+
+Por último, para darle uso a este filesystem de 6GB, vamos a montar el LV. Para esto, vamos a crear un directorio utilizando *mkdir* y a montar en él nuesto fs utilizando el comando *mount*.
+
+`$ mkdir /home/sysadmin/mnt-workshop`
+
+`$ sudo mount /dev/vg-worksop/lv-workshop /home/sysadmin/mnt-workshop`
+
+El comando *df -h* nos muestra todos los puntos de montaje que tenemos en nuestra máquina. Corroboremos que el montaje y tamaño de nuestro filesystem son correctos:
+
+`$ df -h`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

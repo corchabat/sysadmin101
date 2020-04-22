@@ -209,30 +209,6 @@ El comando *df -h* nos muestra todos los puntos de montaje que tenemos en nuestr
 `$ df -h`
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 5. Herramientas de Optimización
 
 ### 5.1 Instalar y configurar Web Console.

@@ -26,7 +26,7 @@ Obtendremos como salida una lista interminable de logs. Por otro lado, si nosotr
 
 Para filtrar una ventana de tiempo, podemos ejecutar el siguiente comando:
 
-`$ sudo journalctl -since "2020-04-22 10:30:00" --until "2020-04-22 10:45:00"`
+`$ sudo journalctl --since "2020-04-22 10:30:00" --until "2020-04-22 10:45:00"`
 
 O bien, para monitorear los logs conforme se van generando, podemos ejecutar:
 

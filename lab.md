@@ -152,6 +152,76 @@ Detener un servicio
 
 En esta sección, trabajaremos con los básicos de manejo de usuarios y grupos locales, así como de permisos de archivos y carpetas.
 
+### 3.1. Gestión de usuarios y grupos.
+
+Primero, mostraremos información acerca del usuario *sysadmin* utilizando el comando *id*:
+
+`$ id`
+
+Podemos observar que el usuario tiene un user id (uid), que es en realidad el identificador del usuario, al igual que un group id (gid).
+
+Dentro del archivo */etc/passwd* se encuentran listados todos los usuarios locales de nuestro sistema junto con su uid, gid, la ruta de su directorio home (si es que cuenta con uno) y su shell. Observemos su contenido:
+
+`$ cat /etc/passwd`
+
+De manera análoga, tenemos el archivo */etc/group* con el detalle de los grupos locales y qué usuarios pertenecen a ellos. Observemos su contenido:
+
+`$ cat /etc/group`
+
+
+Para agregar nuevos usuarios y grupos existen los comandos *useradd* y *groupadd*. Para probar esto, vamos a generar dos usuarios adicionales: sysadmin2 y sysadmin3.
+
+`$ sudo useradd sysadmin2`
+
+`$ sudo useradd sysadmin3`
+
+
+Para poder iniciar sesión como estos usuarios, hay que asignarles una contraseña con el comando *passwd*:
+
+`$ sudo passwd sysadmin2`
+
+`$ sudo passwd sysadmin3`
+
+
+Una manera de asegurar que las contraseñas sean privadas y seguras es a través del comando *chage* que nos permite modificar nuestras políticas de contraseñas.
+
+Para mostrar la política de contraseña actual para un usuario:
+
+`$ sudo chage -l sysadmin2`
+
+Para asegurarnos de que el usuario cambie su contraseña cada 60 días como máximo: 
+
+`$ sudo chage -M 60 sysadmin2`
+
+O bien, para asegurarnos de que el usuario tenga que cambiar su contraseña tras iniciar sesión por primera vez:
+
+`$ sudo chage -d 0 sysadmin2`
+
+Probemos iniciar sesión como sysadmin2 para confirmar este último cambio.
+
+Para crear grupos, utilizamos el comando *groupadd* de forma muy similar a *useradd*:
+
+`$ sudo groupadd admin`
+
+
+Para agregar usuarios a este grupo, utilizaremos el comando *usermod* que nos permite modificar cuentas de usuario:
+
+`$ sudo usermod sysadmin2 -G admin`
+
+`$ sudo usermod sysadmin3 -G admin`
+
+
+
+### 3.2. Permisos de archivos y carpetas
+
+
+
+
+
+
+
+
+
 
 
 ## 4. Gestión del almacenamiento.

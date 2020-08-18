@@ -7,6 +7,11 @@
 
 ## 2. Primeros pasos
 
+Nota importante:
+TODOS los ejercicios se harán en el nodo2. Antes de la configuración de IP estática, entramos directamente a esta VM desde la consola. Después de configurar IP estática, podemos conectarnos vía ssh en la máquina workstation:
+
+`$ ssh node2`
+
 ### 2.0.1 Uso de man y journalctl
 El comando man nos es de mucha ayuda al momento de trabajar con un comando cuyas opciones no conocemos de memoria:
 
@@ -90,21 +95,21 @@ $ pwd`
 
 De tal manera que si necesitamos cambiar de directorio, podemos utilizar el comando *cd* o "change directory":
 
-`$ cd /home/student`
+`$ cd /home/cloud-user`
 
 Ahora bien, si el directorio que necesitamos no existe, podemos crearlo com *mkdir":
 
-`$ mkdir /home/student/dir1`
+`$ mkdir /home/cloud-user/dir1`
 
 O si vamos a crear directorios anidados, añadimos la opción *-p*
 
-`$ mkdir -p /home/student/dir1/dir2/dir3`
+`$ mkdir -p /home/cloud-user/dir1/dir2/dir3`
 
 Para observar qué archivos y directorios están contenidos dentro de cierta ruta, tenemos el comando *ls*, por ejemplo, si ejecutamos *ls -las*:
 
-`$ ls -las /home/student`
+`$ ls -las /home/cloud-user`
 
-Podremos ver información acerca de quienes son los propietarios, timestamps y tamaños de todo lo que se encuentra dentro de /home/student.
+Podremos ver información acerca de quienes son los propietarios, timestamps y tamaños de todo lo que se encuentra dentro de /home/cloud-user.
 
 ### 2.5. Iniciar, detener y habilitar servicios.
 
@@ -272,7 +277,10 @@ Antes de poder disponer de este espacio, es necesario otorgarle un filesystem, e
 
 Por último, para darle uso a este filesystem de 6GB, vamos a montar el LV. Para esto, vamos a crear un directorio utilizando *mkdir* y a montar en él nuesto fs utilizando el comando *mount*.
 
-`$ mkdir /home/student/mnt-workshop`
+`$ mkdir /home/
+
+
+/mnt-workshop`
 
 `$ sudo mount /dev/vg-worksop/lv-workshop /home/student/mnt-workshop`
 

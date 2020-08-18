@@ -58,50 +58,6 @@ Presionamos la tecla *i* para comenzar a insertar/editar:
 Para guardar cambios y salir, presionamos la tecla *esc*, que nos manda de vuelta al modo de comando, donde ejecutaremos *:wq* para guardar y salir.
 Tome este archivo y haga pruebas con él: pruebe eliminar una línea entera, deshacer cambios o copiar y pegar.
       
-### 2.1. Configuración de Red.
-
-Nota importante:
-TODOS los ejercicios se harán en el nodo2. Antes de la configuración de IP estática, entramos directamente a esta VM desde la consola. Después de configurar IP estática, podemos conectarnos vía ssh en la máquina workstation:
-
-`$ ssh student@node2.example.com`
-
-
-La primera configuración que llevaremos a cabo será asignar una dirección ip estática a nuestro sistema. Esto es especialmente necesario en el caso de los servidores que requieren ser accesados constantemente. La forma más directa de configurar la ip estática es a través del comando **nmcli** pero antes de eso, deberemos hacer algunas verificaciones:
-
-Para conocer los dispositivos de red que están conectados a nuestro sistema, los listaremos con:
-
-`$ ip link show`
-
-Observamos que la única interfaz que lista es *ens3* y que se encuentra en estado DOWN, lo cual quiere decir que la interfaz se encuentra deshabilitada. Vamos a habilitarla:
-
-`$ sudo ip link set ens3 up`
-
-Para mostrar un resumen de qué dispositivos de red tenemos en nuestra máquina, si están habilitados y si tienen asignada una conexión, utilizamos el comando *nmcli*:
-
-`$ nmcli device s`
-
-Y para mostrar qué conexiones activas tenemos:
-
-`$ nmcli connection show`
-
-Ya que contamos con esta información, pasaremos a configurar la conexión con dirección IP estática:
-
-`$ nmcli connection add type ethernet ifname <nombre-del-dispositivo> con-name <nombre-de-la-conexión> ipv4.addresses <192.168.XX.XX>/24 ipv4.gateway <192.168.XX.XX> ipv4.dns <192.168.XX.XX> ipv4.method manual`
-
-Considerar los siguientes parámetros:
-ifname: ens3
-con-name: ens3
-ip4: 10.0.0.12/24
-gw: 10.0.0.1
-dns: 10.0.0.2
-
-Verificamos de nuevo con: 
-
-`$ sudo nmcli connection show`
-
-`$ ping node3`
-
-`$ ip route show`
 
 
 ### 2.2. Habilitar firewall para un puerto o servicio.

@@ -277,12 +277,12 @@ Antes de poder disponer de este espacio, es necesario otorgarle un filesystem, e
 
 Por último, para darle uso a este filesystem de 6GB, vamos a montar el LV. Para esto, vamos a crear un directorio utilizando *mkdir* y a montar en él nuesto fs utilizando el comando *mount*.
 
-`$ mkdir /home/
+`$ mkdir /home/cloud-user/mnt-workshop
 
 
 /mnt-workshop`
 
-`$ sudo mount /dev/vg-worksop/lv-workshop /home/student/mnt-workshop`
+`$ sudo mount /dev/vg-workshop/lv-workshop /home/cloud-user/mnt-workshop`
 
 El comando *df -h* nos muestra todos los puntos de montaje que tenemos en nuestra máquina. Corroboremos que el montaje y tamaño de nuestro filesystem son correctos:
 

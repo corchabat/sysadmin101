@@ -46,7 +46,7 @@ dd -   borrar línea completa
 
 Para probar Vi, vamos a generar un archivo que tenga como contenido parte de alguna canción:
 
-`$ vi cielito`
+`$ vi cancion`
 
 Presionamos la tecla *i* para comenzar a insertar/editar:
 
@@ -103,10 +103,6 @@ Verificamos de nuevo con:
 
 `$ ip route show`
 
-`$ netstat -tulpn`
-Nota: el comando netstat es parte del paquete net-tools:
-`$ sudo yum -y install net-tools`
-
 
 ### 2.2. Habilitar firewall para un puerto o servicio.
 
@@ -121,6 +117,8 @@ Un firewall sirve para proteger nuestros sistemas del tráfico de red no deseado
 Para obtener las últimas versiones de los paquetes que tenemos instalados.
 
 `$ sudo yum -y update && yum -y upgrade`
+
+Nota: omitir este paso para el workshop, ya que toma mucho tiempo.
 
 Para instalar un paquete, también se utiliza el comando yum:
 
@@ -171,7 +169,7 @@ En esta sección, trabajaremos con los básicos de manejo de usuarios y grupos l
 
 ### 3.1. Gestión de usuarios y grupos.
 
-Primero, mostraremos información acerca del usuario *sysadmin* utilizando el comando *id*:
+Primero, mostraremos información acerca del usuario *cloud-user* utilizando el comando *id*:
 
 `$ id`
 
@@ -275,9 +273,9 @@ Ahora veamos cómo se modifica la pertenencia con el comando *chown*, asignando 
 ## 4. Gestión del almacenamiento.
 En esta sección, entenderemos qué es el Logical Volumen Manager (LVM), cómo podemos utilizarlo para gestionar el almacenamiento de dispositivos de bloques y cómo podemos disponer de este espacio.
 
-En primer lugar, necesitamos conocer qué dispositivos de bloque están conectados a nuestra máquina. Para esto, podemos ayudarnos del comando *lsblk*:
+En primer lugar, necesitamos conocer qué dispositivos de bloque están conectados a nuestra máquina. Para esto, podemos ayudarnos del comando *fdisk*:
 
-`$ lsblk`
+`$ fdisk -l`
 
 Podemos observar que se especifican las rutas de los dispositivos, su tamaño y si están montados y dónde. En este caso, notamos los discos */dev/vdb* y */dev/vdc*, ambos de 5GB y que no han sido montados. Estos son los discos con los que trabajaremos.
 
@@ -331,20 +329,24 @@ El comando *df -h* nos muestra todos los puntos de montaje que tenemos en nuestr
 
 ### 5.1 Instalar y configurar Web Console.
 
-En "node2" realizamos los siguientes pasos:
+En el navegador, accedemos a
 
-`$ sudo yum install cockpit`
+`https://10.0.0.12:9090`
 
-`$ sudo firewall-cmd --add-service=cockpit --permanent`
-
-`$ sudo firewall-cmd --reload`
-
-`$ sudo systemctl enable --now cockpit.socket`
-
-En el navegador de workstation, accedemos a
-
-`https://hostname.example.com:9090` o `https://10.0.0.12:9090`
+Nota: cambiar por la IP correspondiente
 
 E ingresamos con nuestras credenciales estándar.
+
+### 5.2 Tuned
+
+Tuned es un servicio que nos permite optimizar el rendimiento de nuestros sistemas, modificando parámetros de forma dinámica dependiendo del uso que se le de al servidor.
+
+
+`$ sudo tuned-adm active`
+`$ sudo tuned-adm list`
+`$ sudo tuned-adm  profile <perfil>`
+`$ sudo tuned-adm recommend`
+
+
 
 
